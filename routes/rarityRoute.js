@@ -1,6 +1,5 @@
 const express = require('express');
 var router = express.Router();
-const { signTransaction } = require("../utils/signer");
 const { getRarityGen, getRarityGen2 } = require("../utils/rarity")
 
 router.post('/gen', async (req, res) => {
@@ -11,15 +10,13 @@ router.post('/gen', async (req, res) => {
             res.sendStatus(500)
         }
         else {
-            const sign = signTransaction(tokenId,rarity)
             res.send({
-                signature: sign
+                rarity: rarity
             }).status(200)
         }
     } catch (err) {
         res.send(err.message).status(500)
     }
-
 })
 
 router.post('/gen2', async (req, res) => {
@@ -30,15 +27,13 @@ router.post('/gen2', async (req, res) => {
             res.sendStatus(500)
         }
         else {
-            const sign = signTransaction(tokenId,rarity)
             res.send({
-                signature: sign
+                rarity: rarity
             }).status(200)
         }
     } catch (err) {
         res.send(err.message).status(500)
     }
-
 })
 
 module.exports = router
