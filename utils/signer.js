@@ -6,24 +6,26 @@ const domain = {
     name: "Godjira",
     version: "1",
     chainId: 4,
-    verifyingContract: "0x87Bb9dBA0fa1b4c5179deaBAC71e564F648DE7fe"
+    verifyingContract: "0xCc65579531a11eF955aFB9a50840a4996B1F2b86"
 }
 const types ={
     whitelisted:[
         {name: 'tokenId', type: 'uint256'},
-        {name: 'rarity', type: 'uint256'}
+        {name: 'rarity', type: 'uint256'},
+        {name: 'isGenesis', type: 'bool'}
     ]
 }
-async function signTransaction(tokenId,rarity) {
+async function signTransaction(tokenId,rarity,isGenesis) {
     console.log('signTransaction')
   const value = {
     tokenId: tokenId,
     rarity: rarity,
+    isGenesis: isGenesis
   };
   console.log(tokenId,rarity);
 
   const sign = await wallet._signTypedData(domain, types, value);
-  console.log([tokenId, rarity, sign]);
+  console.log([tokenId, rarity, isGenesis, sign]);
   return sign;
 }
 

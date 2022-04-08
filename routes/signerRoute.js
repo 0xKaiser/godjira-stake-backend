@@ -6,14 +6,14 @@ const { getRarityGen, getRarityGen2 } = require("../utils/rarity")
 router.post('/gen', async (req, res) => {
     try {
         const { tokenId } = req.body;
-        const rarity = getRarityGen(tokenId);
+        const rarity = await getRarityGen(tokenId);
         if (!rarity) {
             res.sendStatus(500)
         }
         else {
-            const sign = signTransaction(tokenId,rarity)
+            const sign = await signTransaction(tokenId,rarity,true)
             res.send({
-                signature: [tokenId, rarity,sign]
+                signature: [tokenId, rarity,true,sign]
             }).status(200)
         }
     } catch (err) {
@@ -25,14 +25,14 @@ router.post('/gen', async (req, res) => {
 router.post('/gen2', async (req, res) => {
     try {
         const { tokenId } = req.body;
-        const rarity = getRarityGen2(tokenId);
+        const rarity = await getRarityGen2(tokenId);
         if (!rarity) {
             res.sendStatus(500)
         }
         else {
-            const sign = signTransaction(tokenId,rarity)
+            const sign = await signTransaction(tokenId,rarity,false)
             res.send({
-                signature: [tokenId, rarity,sign]
+                signature: [tokenId, rarity,false,sign]
             }).status(200)
         }
     } catch (err) {

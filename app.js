@@ -9,14 +9,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose
-  .connect(process.env.DATABASE_URL)
-  .then(() => {
-    console.log("db connected");
-  })
-  .catch(() => {
-    console.log("error connecting");
-  });
+// mongoose
+//   .connect(process.env.DATABASE_URL)
+//   .then(() => {
+//     console.log("db connected");
+//   })
+//   .catch(() => {
+//     console.log("error connecting");
+//   });
 try {
   app.use(routes);
 } catch (error) {

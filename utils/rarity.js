@@ -57,7 +57,7 @@ const test = async () => {
     console.log(await getRarityGen(2))
 }
 
-test()
+
 module.exports = {getRarityGen,getRarityGen2}
 
 
