@@ -13,7 +13,7 @@ router.post('/gen', async (req, res) => {
         else {
             const sign = signTransaction(tokenId,rarity)
             res.send({
-                signature: sign
+                signature: [tokenId, rarity,sign]
             }).status(200)
         }
     } catch (err) {
@@ -32,7 +32,7 @@ router.post('/gen2', async (req, res) => {
         else {
             const sign = signTransaction(tokenId,rarity)
             res.send({
-                signature: sign
+                signature: [tokenId, rarity,sign]
             }).status(200)
         }
     } catch (err) {
