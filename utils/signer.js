@@ -5,8 +5,8 @@ const wallet = new ethers.Wallet("f2cd36a4684a07e8375b2224e6d10c09226d9c14f07921
 const domain = {
     name: "Godjira",
     version: "1",
-    chainId: 4,
-    verifyingContract: "0xCc65579531a11eF955aFB9a50840a4996B1F2b86"
+    chainId: 1,
+    verifyingContract: "0xe71a8ddCad4a950a1bbea58a301F62B5337eCB5c"
 }
 const types ={
     whitelisted:[
