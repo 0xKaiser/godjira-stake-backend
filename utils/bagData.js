@@ -6,7 +6,7 @@ const provider = new ethers.providers.JsonRpcProvider("https://eth-mainnet.alche
 const stakingContract = new ethers.Contract(stakingAddress,stakingAbi,provider)
 
 
-const bagDetails = async(bagId) =>{
+const getBagDetails = async(bagId) =>{
     const n = await bagsDetails(bagId)
     const genId = n.genTokenId.toNumber()
     const m = await gen2Tokens(bagId)
@@ -47,4 +47,4 @@ const gen2Tokens = async (bagId) => {
     }
   };
 
-module.exports = {bagDetails}
+module.exports = {getBagDetails}

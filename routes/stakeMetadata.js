@@ -1,10 +1,10 @@
 const express = require('express');
 var router = express.Router();
-const {bagDetails} = require('../utils/bagData')
+const {getBagDetails} = require('../utils/bagData')
 router.get('/:id', async (req, res) =>{
     console.log(req.params.id)
     let attributes = []
-    const n = await bagDetails(req.params.id)
+    const n = await getBagDetails(req.params.id)
     if(n[0]!==0){
       attributes.push({
             "trait_type": "Genesis in Bag", 
