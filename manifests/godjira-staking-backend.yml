@@ -47,7 +47,7 @@ metadata:
   labels:
     group: godjira
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       app: godjirastaking
