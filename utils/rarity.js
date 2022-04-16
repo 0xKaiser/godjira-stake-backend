@@ -53,11 +53,70 @@ const getRarityGen2 = async (tokenId) => {
 
 }
 
+const getRarityGen2array = async (tokenIds) => {
+    const return_list=[]
+    for (let i = 0; i < tokenIds.length; i++){
+        try {
+            const { data } = await axios.get(`${GEN2_BASE_URL}${tokenIds[i]}`)
+            console.log(data["attributes"][0]['value'])
+            if (data["attributes"][0]['trait_type']=='Type') {
+                if(data["attributes"][0]['value']=='Legendary'){
+                    return_list.push(3)
+                }
+                else if(data["attributes"][0]['value']=='Rare'){
+                    return_list.push(2)
+                }
+                else{
+                    return_list.push(1)
+                }
+    
+            }
+            else {
+                return_list.push(false)
+            }
+        }
+        catch (error) {
+            console.log(error.message)
+            return_list.push(false)
+        }
+    }
+    return return_list
+
+}
+
+
+const getRarityGenarray = async (tokenIds) => {
+    const return_list=[]
+    for (let i = 0; i < tokenIds.length; i++){
+        try {
+            const { data } = await axios.get(`${GEN_BASE_URL}${tokenIds[i]}`)
+            console.log(data["attributes"][data["attributes"].length - 1]['value'])
+            if (data["attributes"][data["attributes"].length - 1]['trait_type'] == 'LEGENDARY') {
+                if (data["attributes"][data["attributes"].length - 1]['value'] == 'Legendary') {
+                    return_list.push(2)
+                }
+                else {
+                    return_list.push(1)
+                }
+            }
+            else {
+                return_list.push(false)
+            }
+        }
+        catch (error) {
+            console.log(error.message)
+            return_list.push(false)
+        }
+    }
+    return return_list
+
+}
+
 const test = async () => {
     console.log(await getRarityGen(2))
 }
 
 
-module.exports = {getRarityGen,getRarityGen2}
+module.exports = {getRarityGen,getRarityGen2,getRarityGen2array,getRarityGenarray}
 
 
