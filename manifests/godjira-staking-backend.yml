@@ -47,7 +47,7 @@ metadata:
   labels:
     group: godjira
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       app: godjirastaking
@@ -60,13 +60,13 @@ spec:
         - name: godjirastaking
           image: 0xytocin.azurecr.io/godjira/staking
           imagePullPolicy: Always
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "150m"
-            limits:
-              memory: "400Mi"
-              cpu: "200m"
+          # resources:
+          #   requests:
+          #     memory: "100Mi"
+          #     cpu: "150m"
+          #   limits:
+          #     memory: "400Mi"
+          #     cpu: "200m"
           livenessProbe: 
             httpGet:
               path: /
@@ -94,3 +94,5 @@ spec:
                 secretKeyRef:
                   name: godjirastaking
                   key: Contract
+      imagePullSecrets:
+      - name: godjira
