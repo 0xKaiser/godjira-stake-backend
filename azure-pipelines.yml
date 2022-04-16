@@ -11,7 +11,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '6464f88a-9073-49b3-8823-a3e88a18a74a'
-  imageRepository: 'godjirastaking'
+  imageRepository: 'godjira/staking'
   containerRegistry: '0xytocin.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
