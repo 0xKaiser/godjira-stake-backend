@@ -8,7 +8,7 @@ router.get('/:id', async (req, res) =>{
     if(n[0]!==0){
       attributes.push({
             "trait_type": "Genesis in Bag", 
-            "value": n[0]
+            "value": `${n[0]}`
       })
     }
     if(n[1].length > 0){
