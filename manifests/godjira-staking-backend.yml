@@ -1,0 +1,97 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: godjirastaking
+  namespace: godjira
+  labels:
+    group: godjira
+spec:
+  selector:
+    app: godjirastaking
+  ports:
+    - name: proxymanger0
+      protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: letsencrypt
+  name: godjira
+  namespace: godjira
+spec:
+  tls:
+  - hosts:
+    - godjirastaking.0xytocin.ml
+    secretName: godjirastaking0xytocinml
+  rules:
+  - host: godjirastaking.0xytocin.ml
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: dynastybackend
+            port: 
+              number: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: godjirastaking
+  namespace: godjira
+  labels:
+    group: godjira
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: godjirastaking
+  template:
+    metadata:
+      labels:
+        app: godjirastaking
+    spec:
+      containers:
+        - name: godjirastaking
+          image: 0xytocin.azurecr.io/godjira/staking
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "150m"
+            limits:
+              memory: "400Mi"
+              cpu: "200m"
+          livenessProbe: 
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          env:
+            - name: KEY
+              valueFrom:
+                secretKeyRef:
+                  name: godjirastaking
+                  key: KEY
+            - name: ChainId
+              valueFrom:
+                secretKeyRef:
+                  name: godjirastaking
+                  key: ChainId
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: godjirastaking
+                  key: PORT
+            - name: Contract
+              valueFrom:
+                secretKeyRef:
+                  name: godjirastaking
+                  key: Contract
