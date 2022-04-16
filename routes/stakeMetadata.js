@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) =>{
     if(n[1].length > 0){
       attributes.push({
         "trait_type": "Gen2 in Bag", 
-        "value": n[1]
+        "value": n[1].join()
   })
     }
     const response = {
