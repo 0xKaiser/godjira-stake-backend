@@ -36,7 +36,7 @@ spec:
         pathType: Prefix
         backend:
           service: 
-            name: dynastybackend
+            name: godjirastaking
             port: 
               number: 80
 ---
