@@ -25,10 +25,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - godjirastaking.0xytocin.ml
-    secretName: godjirastaking0xytocinml
+    - godjirastaking.0xytocin.online
+    secretName: godjirastaking0xytocinonline
   rules:
-  - host: godjirastaking.0xytocin.ml
+  - host: godjirastaking.0xytocin.online
     http:
       paths:
       - path: /
