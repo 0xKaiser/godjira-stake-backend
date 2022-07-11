@@ -7,6 +7,6 @@ router.use("/signer", signerRoute);
 router.use("/rarity", rarityRoute);
 router.use("/metadata", stakingMetadataRoute);
 router.use("/", async(req, res)=>{
-    res.send("Server Up")
+    res.send("Server Working")
 })
 module.exports = router;
